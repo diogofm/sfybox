@@ -1,0 +1,2 @@
+# sfybox
+Spotify playlist manager
