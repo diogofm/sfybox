@@ -1,0 +1,13 @@
+<!-- Arquivo: templates/users/register.html -->
+<h1><br><center> CADASTRO DE USUÁRIOS</h1>
+<body style="background:#88FDBD">
+
+<center>
+<img src="https://cdn.theenemy.com.br/h0UEFooGg-qOzkfy7RhKRJsSl2c=/970x360/smart/media/uploads/conteudo/fotos/Spotify2.jpg" height="150" width="465" border="5"> 
+
+<form role="form" class="form" method="POST">
+{% csrf_token %}
+{{ form.as_p }}
+<button type="submit" class="btn btn-warning">CADASTRAR</button>
+</form>
+

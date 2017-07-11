@@ -1,0 +1,17 @@
+<body style="background:#88FDBD">
+<br><h2><center>SEJA BEM-VINDO(A) {% if user.is_authenticated %}{{ user.first_name }}{% else %}usuário anônimo{% endif %}</h2>
+<center>
+<h3><a href="{% url 'users:logout' %}">Logout (Sair)</a>.</h3>
+{% if user.is_authenticated %}
+<br>
+    <h1>{{playlist_name}}</h1>
+    <ul>
+    {% for track in tracks %}
+        <li>{{track|get_item:name}} - {{track|get_artist_name}}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p><a href="{% url 'users:register' %}">Registre-se</a>.</p>
+<p><a href="{% url 'users:login' %}">Login</a>.</p>
+{% endif %}
+

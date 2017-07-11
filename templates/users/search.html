@@ -1,0 +1,27 @@
+<body style="background:#88FDBD">
+<h2><center><br>SEJA BEM-VINDO(A)</h2>{% if user.is_authenticated %}{{ user.first_name }}{% else %}{% endif %}</p>
+{% if user.is_authenticated %}
+            <form  id="user_form" method="post" action="{% url 'users:search' %}">
+                {% csrf_token %}
+                <!-- Display the search form elements here -->
+                <input type="text" size="50" name="query" value="" id="query" />
+                <input type="submit" name="submit" value="Search" />
+                <br />
+            </form>
+                {% for result in result_list %}
+
+                        <h4>{{result|get_item:name}}</h4>
+
+                {% endfor %}
+{% else %}
+<center>
+<img src="https://img2.ibxk.com.br/2016/12/01/01123842236162.jpg?w=480&h=280&mode=crop" height="170" width="465" border="5">
+<h3>
+<h3>É NOVO(A) POR AQUI?</h4>
+<img src="https://image.freepik.com/icones-gratis/baixar-ou-seta-apontando-para-baixo_318-33675.jpg" height="70" width="70" border="5">
+
+<h3><a href="{% url 'users:register' %}">REGISTRE-SE</a></p>
+<h3>JÁ É VETERANO(A)?</h4>
+<img src="https://image.freepik.com/icones-gratis/baixar-ou-seta-apontando-para-baixo_318-33675.jpg" height="70" width="70" border="5">
+<h3><a href="{% url 'users:login' %}">LOGIN</a></p>
+{% endif %}

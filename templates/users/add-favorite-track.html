@@ -1,0 +1,24 @@
+<body style="background:#88FDBD">
+<body><center>
+<br><br>
+
+        <h1>Adicionar Nova Música Favorita</h1>
+<img src="http://www.simbolos.net.br/wp-content/uploads/2013/11/simbolo-de-musica.jpeg" height="200" width="500" border="5">
+<br><br>
+
+        <form id="favorite_track_form" method="post" action="{% url 'users:add_new_favorite_track' %}">
+
+            {% csrf_token %}
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+
+            {% for field in form.visible_fields %}
+                {{ field.errors }}
+                {{ field.help_text }}
+                {{ field }}
+            {% endfor %}
+<br><br>
+            <input type="submit" name="submit" value="Adicionar Favorita!" />
+        </form>
+    </body>

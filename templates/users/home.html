@@ -1,0 +1,31 @@
+<!-- Arquivo: templates/users/home.html -->
+<body style="background:#88FDBD">
+<h2><center><br>SEJA BEM-VINDO(A) {% if user.is_authenticated %}{{ user.first_name }}{% else %}usuário anônimo{% endif %}</h2>
+<center>
+
+{% if user.is_authenticated %}
+<h4>
+<a href="{% url 'users:logout' %}">Logout (Sair)</a></h4>
+    <ul>
+
+<h3>SUAS PLAYLISTS:</h3>
+<img src="http://www.coxinhanerd.com.br/wp-content/uploads/2015/04/playlist-para-curtir-o-final-de-semana.png" height="110" width="300" border="5">
+<br><br>
+    {% for playlist in playlists %}
+        <li><a href="{% url 'users:playlist-tracks' playlist|get_item:'id' %}">{{playlist|get_item:name}}</a></li>
+    {% endfor %}
+</ul>
+<br>
+<a href="{% url 'users:add_new_favorite_track' %}"><h3>Adicionar música favorita</h3></a><br/>
+{% if favorite_tracks %}
+<ul>
+        <h3>SUAS MÚSICAS FAVORITAS:</h3>
+    {% for track in favorite_tracks %}
+        <li>{{track.name}} - {{track.artist}}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% else %}
+<p><a href="{% url 'users:register' %}">Registre-se</a></p>
+<p><a href="{% url 'users:login' %}">Login</a></p>
+{% endif %}
